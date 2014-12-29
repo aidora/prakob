@@ -14,10 +14,10 @@ func main() {
 
 	app.Commands = []cli.Command{
 		{
-			Name: "build",
+			Name:      "build",
 			ShortName: "b",
-			Usage: "build cluster",
-			Action: build,
+			Usage:     "build cluster",
+			Action:    build,
 		},
 	}
 

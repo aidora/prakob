@@ -6,10 +6,10 @@ import yaml "gopkg.in/yaml.v2"
 import "io/ioutil"
 
 type Node struct {
-	Image string
-	Scale int
-	Links []string
-	Build string
+	Image   string
+	Scale   int
+	Links   []string
+	Build   string
 	Volumns []string
 }
 
@@ -21,7 +21,7 @@ type Pod struct {
 type Config struct {
 	Cluster struct {
 		Scale int
-		Pods []Pod
+		Pods  []Pod
 	}
 }
 

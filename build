@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ ! -h .gopath/src/github.com/aidora/prakob ]; then
+
+	mkdir -p .gopath/src/github.com/aidora
+
+	if [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+		junction .gopath/src/github.com/aidora/prakob `pwd -W` 
+	else
+		ln -s ../../../../ .gopath/src/github.com/aidora/prakob
+	fi
+
+fi
+
+export GOBIN=`pwd -W`/bin
+export GOPATH=`pwd -W`/.gopath
+
+go get github.com/samalba/dockerclient
+go get gopkg.in/yaml.v2
+go get github.com/codegangsta/cli
+
+go install github.com/aidora/prakob

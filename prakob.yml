@@ -1,0 +1,19 @@
+cluster:
+  size: 2
+  pods:
+    - type: service
+      nodes:
+        - front:
+            image: nginx
+            links:
+              - web[*]
+        - web:
+            size: 3
+            build: .
+            volumes:
+              - /var/lib/mysql
+              - /code:/code
+            links:
+              - db
+        - db:
+            image: mysql

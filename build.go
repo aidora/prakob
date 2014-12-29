@@ -11,6 +11,8 @@ type Node struct {
 	Links   []string
 	Build   string
 	Volumns []string
+	Net     string
+	Ports   []string
 }
 
 type Pod struct {

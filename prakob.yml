@@ -7,6 +7,9 @@ cluster:
             image: nginx
             links:
               - web[*]
+            net: host
+            ports:
+              - "80:80"
         - web:
             size: 3
             build: .
@@ -17,3 +20,8 @@ cluster:
               - db
         - db:
             image: mysql
+
+    - type: service
+      nodes:
+        - test:
+            image: me

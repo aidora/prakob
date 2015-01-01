@@ -23,6 +23,7 @@ func main() {
 			Name:      "start",
 			ShortName: "s",
 			Usage:     "start server",
+			Flags:     []cli.Flag{flDir},
 			Action:    startServer,
 		},
 	}

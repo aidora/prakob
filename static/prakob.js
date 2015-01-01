@@ -1,3 +1,10 @@
+/**
+    Prakob's Blocks
+    (c) 2014-2015 SUT
+    Original authors:
+    Chanwit Kaewkasi <chanwit@gmail.com>
+**/
+
 Blockly.Blocks['aidora_cluster'] = {
   init: function() {
     // this.setHelpUrl('http://www.example.com/');
@@ -187,3 +194,20 @@ Blockly.Blocks['aidora_docker_link'] = {
     this.setTooltip('');
   }
 };
+
+Blockly.Blocks['aidora_docker_volume'] = {
+  init: function() {
+    // this.setHelpUrl('http://www.example.com/');
+    this.setColour(10);
+    this.appendDummyInput()
+        .appendField("volume")
+        .appendField(new Blockly.FieldTextInput("/"), 'from')
+        .appendField(":")
+        .appendField(new Blockly.FieldTextInput("/"), 'to');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, "aidora_docker_stmt");
+    this.setNextStatement(true, "aidora_docker_stmt");
+    this.setTooltip('');
+  }
+};
+

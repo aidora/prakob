@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="/blockly_compressed.js"></script>
+    <script src="/blocks_compressed.js"></script>
+    <script src="/prakob.js"></script>
+    <script src="/msg/js/en.js"></script>
+    <style>
+      html, body {
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+      }
+      .blocklySvg {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <script>
+      function init() {
+        Blockly.inject(document.body,
+            {toolbox: document.getElementById('toolbox')});
+        // Let the top-level application know that Blockly is ready.
+        window.parent.blocklyLoaded(Blockly);
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <xml id="toolbox" style="display: none">
+      <block type="aidora_cluster"></block>
+      <block type="aidora_pod"></block>
+      <block type="aidora_container"></block>
+      <block type="aidora_container_resource"></block>
+      <block type="aidora_docker_image"></block>
+      <block type="aidora_docker_file"></block>
+      <block type="aidora_docker_from"></block>
+      <block type="aidora_docker_net"></block>
+      <block type="aidora_docker_port"></block>
+      <block type="aidora_docker_link"></block>
+    </xml>
+  </body>
+</html>

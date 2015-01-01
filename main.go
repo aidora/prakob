@@ -19,6 +19,12 @@ func main() {
 			Usage:     "build cluster",
 			Action:    build,
 		},
+		{
+			Name:      "start",
+			ShortName: "s",
+			Usage:     "start server",
+			Action:    startServer,
+		},
 	}
 
 	if err := app.Run(os.Args); err != nil {

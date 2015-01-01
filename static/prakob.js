@@ -211,3 +211,18 @@ Blockly.Blocks['aidora_docker_volume'] = {
   }
 };
 
+Blockly.Blocks['aidora_docker_env'] = {
+  init: function() {
+    // this.setHelpUrl('http://www.example.com/');
+    this.setColour(10);
+    this.appendDummyInput()
+        .appendField("env")
+        .appendField(new Blockly.FieldTextInput("ENV"), 'name')
+        .appendField("=")
+        .appendField(new Blockly.FieldTextInput(""), 'value');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, "aidora_docker_stmt");
+    this.setNextStatement(true, "aidora_docker_stmt");
+    this.setTooltip('');
+  }
+};

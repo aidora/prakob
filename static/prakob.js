@@ -10,7 +10,8 @@ Blockly.Blocks['aidora_cluster'] = {
     // this.setHelpUrl('http://www.example.com/');
     this.setColour(200);
     this.appendDummyInput()
-        .appendField("cluster");
+        .appendField("cluster")
+        .appendField(new Blockly.FieldTextInput("name"), "NAME");
     this.appendDummyInput()
         .appendField("N =")
         .appendField(new Blockly.FieldTextInput("1"), "INSTANCES");

@@ -25,6 +25,7 @@
       border-width: 0 1px 1px 0;
     }
   </style>
+  <script type="text/javascript" src="jquery.js"></script>
 </head>
 <body>
   <table width="100%" height="99%">
@@ -34,6 +35,16 @@
           <img style="display: table-cell; vertical-align: middle;" src="media/sut.png"></img>
           <h1 style="display: table-cell; vertical-align: middle;">Aiyara Cluster :: Prakob (ประกอบ)</h1>
         </div>
+        <button onclick="save();">Save</button>
+        <script type="text/javascript">
+          function save() {
+            var dom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+            var xmlText = Blockly.Xml.domToPrettyText(dom);
+            $.post("/save", {xml: xmlText}, function(data){
+              alert(data);
+            });
+          }
+        </script>
       </td>
     </tr>
     <tr>

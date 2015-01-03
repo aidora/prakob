@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" ng-app="app">
 <head>
   <meta charset="utf-8">
   <title>Aiyara Cluster :: Prakob</title>
@@ -25,9 +25,10 @@
       border-width: 0 1px 1px 0;
     }
   </style>
-  <script type="text/javascript" src="/jquery.js"></script>
+  <script type="text/javascript" src="/angular.js"></script>
+  <script type="text/javascript" src="/app.js"></script>
 </head>
-<body>
+<body ng-controller="AppCtrl">
   <table width="100%" height="99%">
     <tr>
       <td>
@@ -36,38 +37,18 @@
           <h1 style="display: table-cell; vertical-align: middle;">Aiyara Cluster :: Prakob (ประกอบ)</h1>
         </div>
         <div>
-          <input type="text" id="workspace"></input>
-          <button onclick="doLoad();">Load</button>
-          <button onclick="doSave();">Save</button>
+          <select ng-model="workspace" style="width: 10em"/>
+            <option ng-repeat="i in filenames" value="{{i}}">{{i}}</option>
+          </select>
+
+          <button ng-click="doLoad()">Load</button>
+          <button ng-click="doSave()">Save</button>
           <span> | </span>
-          <button onclick="doClear();">Clear</button>
+          <button ng-click="doClear()">Clear</button>
           <span> | </span>
-          <button onclick="doDeploy();">Deploy</button>
-          <button onclick="doStop();">Stop</button>
+          <button>Deploy</button>
+          <button>Stop</button>
         </div>
-        <script type="text/javascript">
-          function doSave() {
-            var dom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-            var xmlText = Blockly.Xml.domToPrettyText(dom);
-            var wk = $('#workspace').val();
-            $.post("/save", {xml: xmlText, workspace: wk}, function(data){
-              alert(data);
-            });
-          }
-
-          function doLoad() {
-            var wk = $('#workspace').val();
-            $.get("/load/" + wk, function(data){
-              var xml = Blockly.Xml.textToDom(data);
-              Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
-            });
-          }
-
-          function doClear() {
-            Blockly.mainWorkspace.clear();
-          }
-
-        </script>
       </td>
     </tr>
     <tr>

@@ -7,10 +7,25 @@ import "net/http"
 import "fmt"
 import "github.com/aidora/prakob/blockly"
 import "io/ioutil"
+import "encoding/json"
+import "strings"
 
 func startServer(c *cli.Context) {
+	goji.Get("/filenames", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type","application/json")
+		files, _ := ioutil.ReadDir("./db")
+		result := make(map[string][]string)
+		list := make([]string, 0)
+		for _, f := range files {
+			list = append(list, f.Name())
+		}
+		result["filenames"] = list
+		output, _ := json.Marshal(result)
+		fmt.Fprint(w, string(output))
+	})
+
 	goji.Get("/load/:name", func(c web.C, w http.ResponseWriter, r *http.Request) {
-		filename := "./db/" + c.URLParams["name"] + ".xml"
+		filename := "./db/" + c.URLParams["name"]
 		bytes, _ := ioutil.ReadFile(filename)
 		fmt.Fprint(w, string(bytes))
 	})
@@ -18,8 +33,11 @@ func startServer(c *cli.Context) {
 		r.ParseForm()
 		content := r.Form["xml"][0]
 		filename := r.Form["workspace"][0]
+		if strings.HasSuffix(filename, ".xml") == false {
+			filename = filename + ".xml"
+		}
 		_ = blockly.NewConfig(content)
-		ioutil.WriteFile("./db/" + filename + ".xml", []byte(content), 0644)
+		ioutil.WriteFile("./db/" + filename, []byte(content), 0644)
 		http.Error(w, http.StatusText(200), 200)
 	})
 

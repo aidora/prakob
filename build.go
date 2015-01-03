@@ -1,6 +1,7 @@
 package main
 
 import "github.com/codegangsta/cli"
+
 // import "fmt"
 // import yaml "gopkg.in/yaml.v2"
 // import "io/ioutil"
@@ -31,13 +32,13 @@ type Config struct {
 
 func build(c *cli.Context) {
 	/*
-	data, err := ioutil.ReadFile("./prakob.yml")
-	fmt.Printf("%s\n----------\n", string(data))
-	config := &Config{}
-	err = yaml.Unmarshal(data, &config)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("%s", config.Cluster.Pods)
+		data, err := ioutil.ReadFile("./prakob.yml")
+		fmt.Printf("%s\n----------\n", string(data))
+		config := &Config{}
+		err = yaml.Unmarshal(data, &config)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Printf("%s", config.Cluster.Pods)
 	*/
 }

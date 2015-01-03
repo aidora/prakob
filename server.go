@@ -12,7 +12,7 @@ import "strings"
 
 func startServer(c *cli.Context) {
 	goji.Get("/filenames", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type","application/json")
+		w.Header().Set("Content-Type", "application/json")
 		files, _ := ioutil.ReadDir("./db")
 		result := make(map[string][]string)
 		list := make([]string, 0)
@@ -29,6 +29,7 @@ func startServer(c *cli.Context) {
 		bytes, _ := ioutil.ReadFile(filename)
 		fmt.Fprint(w, string(bytes))
 	})
+
 	goji.Post("/save", func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		content := r.Form["xml"][0]
@@ -37,7 +38,7 @@ func startServer(c *cli.Context) {
 			filename = filename + ".xml"
 		}
 		_ = blockly.NewConfig(content)
-		ioutil.WriteFile("./db/" + filename, []byte(content), 0644)
+		ioutil.WriteFile("./db/"+filename, []byte(content), 0644)
 		http.Error(w, http.StatusText(200), 200)
 	})
 

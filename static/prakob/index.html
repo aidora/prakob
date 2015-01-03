@@ -35,15 +35,39 @@
           <img style="display: table-cell; vertical-align: middle;" src="media/sut.png"></img>
           <h1 style="display: table-cell; vertical-align: middle;">Aiyara Cluster :: Prakob (ประกอบ)</h1>
         </div>
-        <button onclick="save();">Save</button>
+        <div>
+          <input type="text" id="workspace"></input>
+          <button onclick="doLoad();">Load</button>
+          <button onclick="doSave();">Save</button>
+          <span> | </span>
+          <button onclick="doClear();">Clear</button>
+          <span> | </span>
+          <button onclick="doDeploy();">Deploy</button>
+          <button onclick="doStop();">Stop</button>
+        </div>
         <script type="text/javascript">
-          function save() {
+          function doSave() {
             var dom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
             var xmlText = Blockly.Xml.domToPrettyText(dom);
-            $.post("/save", {xml: xmlText}, function(data){
+            var wk = $('#workspace').val();
+            $.post("/save", {xml: xmlText, workspace: wk}, function(data){
               alert(data);
             });
           }
+
+          function doLoad() {
+            var wk = $('#workspace').val();
+            $.get("/load/" + wk, function(data){
+              var xml = Blockly.Xml.textToDom(data);
+              Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+            });
+          }
+
+          function doClear() {
+            Blockly.mainWorkspace.clear();
+          }
+
+
         </script>
       </td>
     </tr>

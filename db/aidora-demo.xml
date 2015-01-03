@@ -1,0 +1,67 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="aidora_cluster" id="37" x="230" y="59">
+    <field name="NAME">aidora</field>
+    <field name="INSTANCES">1</field>
+    <statement name="pods">
+      <block type="aidora_pod" id="38">
+        <statement name="containers">
+          <block type="aidora_container" id="39" inline="false">
+            <field name="NAME">front</field>
+            <field name="INSTANCES">1</field>
+            <value name="RESOURCE">
+              <block type="aidora_container_resource" id="40">
+                <field name="CPU">100</field>
+                <field name="MEM">512</field>
+              </block>
+            </value>
+            <value name="IMAGE">
+              <block type="aidora_docker_image" id="41">
+                <field name="repository">chanwit</field>
+                <field name="name">openresty</field>
+                <field name="tag">latest</field>
+              </block>
+            </value>
+            <next>
+              <block type="aidora_container" id="42" inline="false">
+                <field name="NAME">web</field>
+                <field name="INSTANCES">20</field>
+                <value name="RESOURCE">
+                  <block type="aidora_container_resource" id="43">
+                    <field name="CPU">200</field>
+                    <field name="MEM">256</field>
+                  </block>
+                </value>
+                <value name="IMAGE">
+                  <block type="aidora_docker_file" id="44">
+                    <statement name="NAME">
+                      <block type="aidora_docker_from" id="45" inline="true">
+                        <value name="NAME">
+                          <block type="aidora_docker_image" id="46">
+                            <field name="repository">chanwit</field>
+                            <field name="name">openresty</field>
+                            <field name="tag">latest</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="aidora_docker_net" id="47">
+                            <field name="NET">host</field>
+                            <next>
+                              <block type="aidora_docker_env" id="48">
+                                <field name="name">PORT</field>
+                                <field name="value">80</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>

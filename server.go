@@ -12,12 +12,12 @@ import "github.com/zenazn/goji"
 import "github.com/zenazn/goji/web"
 
 func startServer(c *cli.Context) {
-	goji.Post("/deploy/:name", func(c web.C, w http.ResponseWriter, r *http.Request){
+	goji.Post("/deploy/:name", func(c web.C, w http.ResponseWriter, r *http.Request) {
 		filename := c.URLParams["name"]
 		bytes, _ := ioutil.ReadFile("./db/" + filename)
 		conf := blockly.NewConfig(string(bytes))
 		clusterName := conf.Cluster(0).Name()
-		fmt.Fprint(w, "Deploying: " + clusterName)
+		fmt.Fprint(w, "Deploying: "+clusterName)
 	})
 
 	goji.Get("/filenames", func(w http.ResponseWriter, r *http.Request) {

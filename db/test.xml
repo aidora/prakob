@@ -1,11 +1,11 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="aidora_cluster" id="14" x="172" y="45">
-    <field name="NAME">name</field>
+  <block type="aidora_cluster" id="13" x="172" y="45">
+    <field name="NAME">test</field>
     <field name="INSTANCES">1</field>
     <statement name="pods">
-      <block type="aidora_pod" id="15">
+      <block type="aidora_pod" id="14">
         <statement name="containers">
-          <block type="aidora_container" id="16" inline="false">
+          <block type="aidora_container" id="15" inline="false">
             <field name="NAME">default</field>
             <field name="INSTANCES">1</field>
           </block>

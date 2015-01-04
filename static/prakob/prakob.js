@@ -57,6 +57,27 @@ Blockly.Blocks['aidora_container'] = {
   }
 };
 
+Blockly.Blocks['aidora_build'] = {
+  init: function() {
+    // this.setHelpUrl('http://www.example.com/');
+    this.setColour(160);
+    this.appendValueInput("BUILD_FILE")
+        .setCheck("aidora_image")
+        .appendField("build file");
+    this.appendDummyInput()
+        .appendField("repo")
+        .appendField(new Blockly.FieldTextInput("repo"), "REPO");
+    this.appendDummyInput()
+        .appendField("name")
+        .appendField(new Blockly.FieldTextInput("name"), "NAME");
+    this.appendDummyInput()
+        .appendField("tag")
+        .appendField(new Blockly.FieldTextInput("latest"), "TAG");
+    this.setTooltip('');
+  }
+};
+
+
 Blockly.Blocks['aidora_container_resource'] = {
   init: function() {
     // this.setHelpUrl('http://www.example.com/');
@@ -99,13 +120,13 @@ Blockly.Blocks['aidora_docker_image'] = {
     this.appendDummyInput()
         .appendField("image");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("repo"), "repository");
+        .appendField(new Blockly.FieldTextInput("repo"), "REPO");
     this.appendDummyInput()
         .appendField("/")
-        .appendField(new Blockly.FieldTextInput("name"), "name");
+        .appendField(new Blockly.FieldTextInput("name"), "NAME");
     this.appendDummyInput()
         .appendField(":")
-        .appendField(new Blockly.FieldTextInput("latest"), "tag");
+        .appendField(new Blockly.FieldTextInput("latest"), "TAG");
     this.setInputsInline(true);
     this.setOutput(true, "aidora_image");
     this.setTooltip('');
@@ -148,7 +169,7 @@ Blockly.Blocks['aidora_docker_net'] = {
             ['bridge','bridge'],
             ['host', 'host'],
             ['none','none']
-        ]), 'NET');
+        ]), "NET");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "aidora_docker_stmt");
     this.setNextStatement(true, "aidora_docker_stmt");
@@ -163,11 +184,11 @@ Blockly.Blocks['aidora_docker_port'] = {
     this.appendDummyInput()
         .appendField("port");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("80"), "host");
+        .appendField(new Blockly.FieldTextInput("80"), "HOST");
     this.appendDummyInput()
         .appendField(":");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("80"), "guest");
+        .appendField(new Blockly.FieldTextInput("80"), "GUEST");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "aidora_docker_stmt");
     this.setNextStatement(true, "aidora_docker_stmt");
@@ -182,11 +203,11 @@ Blockly.Blocks['aidora_docker_link'] = {
     this.appendDummyInput()
         .appendField("link");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("default"), "container");
+        .appendField(new Blockly.FieldTextInput("default"), "CONTAINER");
     this.appendDummyInput()
         .appendField("[");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("*"), "mul");
+        .appendField(new Blockly.FieldTextInput("*"), "MUL");
     this.appendDummyInput()
         .appendField("]");
     this.setInputsInline(true);
@@ -202,9 +223,9 @@ Blockly.Blocks['aidora_docker_volume'] = {
     this.setColour(10);
     this.appendDummyInput()
         .appendField("volume")
-        .appendField(new Blockly.FieldTextInput("/"), 'from')
+        .appendField(new Blockly.FieldTextInput("/"), "FROM")
         .appendField(":")
-        .appendField(new Blockly.FieldTextInput("/"), 'to');
+        .appendField(new Blockly.FieldTextInput("/"), "TO");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "aidora_docker_stmt");
     this.setNextStatement(true, "aidora_docker_stmt");
@@ -218,9 +239,9 @@ Blockly.Blocks['aidora_docker_env'] = {
     this.setColour(10);
     this.appendDummyInput()
         .appendField("env")
-        .appendField(new Blockly.FieldTextInput("ENV"), 'name')
+        .appendField(new Blockly.FieldTextInput("ENV"), "NAME")
         .appendField("=")
-        .appendField(new Blockly.FieldTextInput(""), 'value');
+        .appendField(new Blockly.FieldTextInput(""), "VALUE");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "aidora_docker_stmt");
     this.setNextStatement(true, "aidora_docker_stmt");

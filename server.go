@@ -12,6 +12,14 @@ import "github.com/zenazn/goji"
 import "github.com/zenazn/goji/web"
 
 func startServer(c *cli.Context) {
+	goji.Post("/deploy/:name", func(c web.C, w http.ResponseWriter, r *http.Request){
+		filename := c.URLParams["name"]
+		bytes, _ := ioutil.ReadFile("./db/" + filename)
+		conf := blockly.NewConfig(string(bytes))
+		clusterName := conf.Cluster(0).Name()
+		fmt.Fprint(w, "Deploying: " + clusterName)
+	})
+
 	goji.Get("/filenames", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		files, _ := ioutil.ReadDir("./db")
@@ -38,7 +46,6 @@ func startServer(c *cli.Context) {
 		if strings.HasSuffix(filename, ".xml") == false {
 			filename = filename + ".xml"
 		}
-		_ = blockly.NewConfig(content)
 		ioutil.WriteFile("./db/"+filename, []byte(content), 0644)
 		http.Error(w, http.StatusText(200), 200)
 	})

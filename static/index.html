@@ -13,61 +13,6 @@
       return this.indexOf(suffix, this.length - suffix.length) !== -1;
     };
 
-    var url = "http://192.168.1.3:8888/";
-
-    function pause(containerName, isPaused){
-      var cmd = isPaused ? "unpause" : "pause";
-      $.post(url + "containers" + containerName + "/" + cmd, function(){
-        updateContainers();
-      });
-    }
-
-    function kill(containerName, isPaused){
-      if(isPaused) {
-        pause(containerName, true);
-      }
-      $.post(url + "containers" + containerName + "/kill", function(){
-        updateContainers();
-      });
-    }
-
-    var nodeMap = {};
-
-    function updateContainers(){
-      /*
-      $.getJSON(url + "containers/json", function(data){
-        $("#matrix").find("tr:gt(0)").remove();
-
-        $.each(data, function(k,v){
-          var row = "<tr>";
-
-          row += "<td>" + k + "</td>";
-          var name = v.Names[0];
-          row += "<td>" + name + "</td>";
-          row += "<td>" + v.Image + "</td>";
-          row += "<td>" + v.Command + "</td>";
-          var ports = "";
-          $.each(v.Ports, function(kp,vp){
-            ports += vp.IP + ":" + vp.PublicPort + "->" + vp.PrivatePort + "/" + vp.Type + "<br/>";
-          });
-          row += "<td>" + ports + "</td>";
-          row += "<td>" + v.Status + "</td>";
-
-          var paused = v.Status.endsWith("(Paused)");
-          var glyph = paused ? "play" : "pause";
-          row += "<td><span class='glyphicon glyphicon-" + glyph + "' onclick='javascript:pause(\"" + name + "\", " + paused + ")'></span></td>";
-          row += "<td><span class='glyphicon glyphicon-remove' onclick='javascript:kill(\"" + name + "\", " + paused + ")'></span></td>";
-
-          $("#matrix").append(row + "</tr>");
-
-        });
-      });
-      */
-    }
-
-  setTimeout(updateContainers, 500);
-  setInterval(updateContainers, 1500);
-
   </script>
 
 </head>
@@ -88,7 +33,6 @@
 
     <div class="panel-heading">
       <a href="prakob" class="btn btn-success">New cluster</a>
-      <button class="btn btn-success" ng-click="updateContainers()">Test</button>
     </div>
 
     <table id="matrix" class="table table-bordered table-hover">

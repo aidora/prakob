@@ -16,9 +16,9 @@
             </value>
             <value name="IMAGE">
               <block type="aidora_docker_image" id="17">
-                <field name="repository">chanwit</field>
-                <field name="name">openresty</field>
-                <field name="tag">latest</field>
+                <field name="REPO">chanwit</field>
+                <field name="NAME">openresty</field>
+                <field name="TAG">latest</field>
               </block>
             </value>
             <next>
@@ -37,9 +37,9 @@
                       <block type="aidora_docker_from" id="21" inline="true">
                         <value name="NAME">
                           <block type="aidora_docker_image" id="22">
-                            <field name="repository">chanwit</field>
-                            <field name="name">openresty</field>
-                            <field name="tag">latest</field>
+                            <field name="REPO">chanwit</field>
+                            <field name="NAME">openresty</field>
+                            <field name="TAG">latest</field>
                           </block>
                         </value>
                         <next>
@@ -47,8 +47,8 @@
                             <field name="NET">host</field>
                             <next>
                               <block type="aidora_docker_env" id="24">
-                                <field name="name">PORT</field>
-                                <field name="value">80</field>
+                                <field name="NAME">PORT</field>
+                                <field name="VALUE">80</field>
                               </block>
                             </next>
                           </block>

@@ -69,17 +69,20 @@
 </head>
 
 <body>
-  <div class="panel panel-default" style="width: 99%; margin: 10px auto">
+  <div class="panel panel-default" style="width: 99%; margin-top: 10px; margin-left: 10px; auto">
 
     <div style="display: table;">
       <img style="display: table-cell; vertical-align: middle;" src="prakob/media/sut.png"></img>
       <h2 style="display: table-cell; vertical-align: middle;">Aiyara Cluster :: Prakob (ประกอบ)</h2>
     </div>
 
-    <div class="panel-heading">Running containers</div>
-    <div class="panel-body">
-      <p>This displays running containers on all hosts in your swarm.</p>
-    </div>
+    <style type="text/css">
+      .panel {
+        border: 0;
+      }
+    </style>
+
+    <div class="panel-heading"><a href="prakob" class="btn btn-success">New cluster</a></div>
     <table id="matrix" class="table table-bordered table-hover">
       <thead>
         <tr>
